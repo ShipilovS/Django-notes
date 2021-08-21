@@ -1,0 +1,1 @@
+![alt text](https://github.com/ShipilovS/Django-notes/blob/stefan/info.gif)
