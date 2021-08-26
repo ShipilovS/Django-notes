@@ -12,41 +12,31 @@
 <body>
 
     {% block one %}
-    
-    
+
+
     <div class="container p-3 ">
 
-        <!-- Поиск -->
-        <!-- <div class="card border-primary">
 
-            <div class="card-body">
-                <form action="{% url 'search_notes' %}" method="POST">
-                    {% csrf_token %}
-                    <input name="q" type="text" placeholder="Search...">
-                </form>
-            </div>
-        </div> -->
 
-        <div class="row gx-4 gx-lg-5 ">
+
+        <div class="row gx-4 gx-lg-5 my-2 ">
             {% if my_notes.count == 0 %}
 
             <div class="col-md-3 my-2 p-2 border-primary ">
-                <div class="card border-primary h-100 text-center">
+                <div class="card border-primary h-100 ">
                     <div class="card-body">
                         <a class="btn btn-primary" href="{% url 'new_note' %}">Создать заметку</a>
                     </div>
                 </div>
             </div>
             {% else %}
-            <div class="col-md-4 my-0 p-2 border-primary ">
-                <div class="card border-primary h-100 text-center">
-                    <div class="card-body text-xs-center">
+            <div class="col-md-4 p-2 border-primary ">
+                <div class="card border-primary h-100 text-center ">
+                    <div class="card-body text-xs-center ">
                         <a class="btn btn-primary" href="{% url 'new_note' %}">Создать заметку</a>
                     </div>
                 </div>
             </div>
-
-
 
             {% for mn in my_notes %}
 
@@ -95,14 +85,8 @@
                                 <a class="dropdown-item text-white bg-danger"
                                     href="{% url 'delete' mn.pk %}">Удалить</a>
 
-
-
                             </div>
                         </div>
-
-
-
-
 
                         <small class="text-dark">{{mn.time_of_creation|date:"d/m/Y H:i" }}</small>
 

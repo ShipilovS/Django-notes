@@ -8,8 +8,11 @@ from django.contrib.auth.models import User
 from .models import *
 from .forms import *
 from datetime import datetime
+from notes import settings
 
 def home_page(request):
+    print(settings.STATIC_URL)
+    print(settings.STATIC_ROOT)
     return render(request, 'base.html')
 
 # Создание новой заметки
@@ -60,20 +63,6 @@ def change_color(request, pk, color):
     color_edit.save()
     return redirect(reverse('profile', args=[str(request.user.id)]))
 
-
-def search_notes(request):
-    context = {}
-    if request.method == 'POST':
-        text = request.POST.get('q')
-        print(text)
-        search_notes = Note.objects.filter(title=str(text))
-        print(Note.objects.get(title=str(text)))
-        context = {
-            'search_notes' : search_notes,
-        }
-        return render(request, 'notes_app/profile.html', context=context)
-    else:   
-        return render(request, 'notes_app/profile.html', context=context)
 
 
 # Удаление заметки
