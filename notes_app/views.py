@@ -11,6 +11,7 @@ from datetime import datetime
 from notes import settings
 
 def home_page(request):
+    print(settings.BASE_DIR)
     print(settings.STATIC_URL)
     print(settings.STATIC_ROOT)
     return render(request, 'base.html')
