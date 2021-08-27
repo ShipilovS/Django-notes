@@ -1,0 +1,141 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% block link %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <!-- <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script> -->
+    <link rel="stylesheet" href="{% static 'js/bootstrap.bundle.js' %}">
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"
+        integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"
+        integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1"
+        crossorigin="anonymous"></script>
+    {% endblock link %}
+
+    <title>{% block title %}Notes{% endblock title %}</title>
+
+
+</head>
+
+<body>
+    {% block nav %}
+
+    <body>
+
+
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container px-5">
+                <a class="navbar-brand" href="/">Notes</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav mr-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'profile' %}">Мои заметки<span
+                                    class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'loguot' %}">Выйти <span class="sr-only"></span></a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'login' %}">Вход <span class="sr-only"></span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'registration' %}">Регистрация<span
+                                    class="sr-only"></span></a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        {% endblock nav %}
+
+        {% block one %}
+
+        <div class="container px-5 ">
+
+            <div class="row gx-4 gx-lg-5 align-items-center my-2">
+                <div class="col-lg-7"><img class="img-fluid rounded mb-4 mb-lg-0 pt-3"
+                        src="{% static 'img/notes.jpg' %}" alt="..."></div>
+                <div class="col-lg-5 text-center">
+                    <h1 class="font-weight-light">Заметки для тебя</h1>
+                    <!-- <p>Добавляй заметки, Добавляй заметки, Добавляй заметки, Добавляй заметки, </p> -->
+                    <a class="btn btn-primary mt-3" href="{% url 'new_note' %}">Добавить заметку</a>
+                </div>
+            </div>
+
+            
+            <div class="row gx-4 gx-lg-5 text-center my-3 mb-5">
+                <div class="col-md-4 pt-3">
+                    <div class="card border-primary text-primary h-100">
+                        <div class="card-header border-primary">
+                            <h3 class="card-title">Создавай заметки</h3>
+                        </div>
+                        <div class="card-body ">
+                            <p class="card-text">Создавай заметки в любое время</p>
+                        </div>
+                        <!-- <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4 pt-3">
+                    <div class="card border-primary text-primary h-100">
+                        <div class="card-header border-primary">
+                            <h3 class="card-title ">Меняй цвета</h3>
+                        </div>
+                        <div class="card-body ">
+                            <p class="card-text ">Меняй оттенок заметки под настроение</p>
+                        </div>
+                        <!-- <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div> -->
+                    </div>
+                </div>
+
+                <div class="col-md-4 pt-3">
+                    <div class="card border-primary text-primary h-100">
+                        <div class="card-header border-primary">
+                            <h3 class="card-title">Не забывай мелочи</h3>
+                        </div>
+                        <div class="card-body  ">
+                            <p class="card-text">Заметки помогут тебе не забыть важное</p>
+                        </div>
+                        <!-- <div class="card-footer"><a class="btn btn-primary btn-sm" href="#!">More Info</a></div> -->
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+       
+
+        {% endblock one %}
+
+        {% block login %}
+
+        {% endblock login %}
+
+        {% block registration %}
+
+        {% endblock registration %}
+
+    </body>
+
+</body>
+
+</html>
