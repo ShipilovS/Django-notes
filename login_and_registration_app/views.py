@@ -29,18 +29,19 @@ def registration_user(request):
 # --------
 # Вход в личный кабинет
 def login_user(request):
-    context = {}
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    user = authenticate(request, username=username, password=password)
-    if user is not None and user.is_active: # user.is_active: если пользователь активен, наверное
-        login(request, user)
-        # print("Пользователь найден", user.username)
-        return redirect(reverse("profile"))
-    else:
-        pass
-        # print("Пользователь не найден")
-    return render(request, 'login.html', context=context)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None and user.is_active: # user.is_active: если пользователь активен, наверное
+            login(request, user)
+            # print("Пользователь найден", user.username)
+            return redirect(reverse("profile"))
+        else:
+            pass
+            # print("Пользователь не найден")
+
+    return render(request, 'login.html')
 
 # --------
 # Выход из личного кабинета

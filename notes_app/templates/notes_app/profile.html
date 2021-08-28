@@ -22,9 +22,10 @@
         <div class="row gx-4 gx-lg-5 my-2 ">
             {% if my_notes.count == 0 %}
 
-            <div class="col-md-3 my-2 p-2 border-primary ">
-                <div class="card border-primary h-100 ">
-                    <div class="card-body">
+            
+            <div class="col-md-4 p-2 border-primary ">
+                <div class="card border-primary h-100 text-center ">
+                    <div class="card-body text-xs-center my-5">
                         <a class="btn btn-primary" href="{% url 'new_note' %}">Создать заметку</a>
                     </div>
                 </div>
@@ -32,14 +33,13 @@
             {% else %}
             <div class="col-md-4 p-2 border-primary ">
                 <div class="card border-primary h-100 text-center ">
-                    <div class="card-body text-xs-center ">
+                    <div class="card-body text-xs-center my-5">
                         <a class="btn btn-primary" href="{% url 'new_note' %}">Создать заметку</a>
                     </div>
                 </div>
             </div>
 
             {% for mn in my_notes %}
-
             <div class="col-md-4 my-0 p-2 border-primary">
                 <div class="card border-primary {{mn.bg_color}} h-100">
                     <div class="card-header border-dark ">
