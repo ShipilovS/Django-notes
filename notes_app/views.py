@@ -10,6 +10,7 @@ from .forms import *
 from datetime import datetime
 from notes import settings
 
+
 def home_page(request):
     print(settings.BASE_DIR)
     print(settings.STATIC_URL)
@@ -55,6 +56,7 @@ def edit_note(request, pk):
                 'form' : form,
     }
     return render(request, 'notes_app/edit_note.html', context=context)
+
 
 # Функция изменения цвета фона заметки
 def change_color(request, pk, color):

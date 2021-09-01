@@ -4,6 +4,10 @@ from django.contrib import auth
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from django.urls import reverse
+from django.core.mail import send_mail
+from notes import settings
+
+
 
 # --------
 # Регистрация нового пользователя
@@ -13,19 +17,24 @@ def registration_user(request):
             email = request.POST.get('email')
             password = request.POST.get('password')
             password2 = request.POST.get('password2')
-            print(len(password and password2))
             if User.objects.filter(username=username).exists():
                 pass
-                # print("Пользователь уже есть..")
             else:
                 if password == password2 and len(password and password2 and username and email) != 0: # если пароли верные
                     User.objects.create_user(username, email, password)
-                    # print("Пользователь создан", username)
                     login_user(request)
+                    # send_mail(
+                    #     f'Привет, {username} ',
+                    #     'Спасибо за регистрацию.',
+                    #     settings.EMAIL_HOST_USER,
+                    #     [email],
+                    #     fail_silently=False,
+                    # )
                     return redirect(reverse("profile"))
                 else:
-                    pass # если пароли неверные, написать типо ваш пароль неверный повторите попытку
+                    pass
     return render(request, 'registration.html')
+
 
 # --------
 # Вход в личный кабинет
@@ -36,12 +45,9 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None and user.is_active: # user.is_active: если пользователь активен, наверное
             login(request, user)
-            # print("Пользователь найден", user.username)
             return redirect(reverse("profile"))
         else:
             pass
-            # print("Пользователь не найден")
-
     return render(request, 'login.html')
 
 # --------
