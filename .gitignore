@@ -4,3 +4,4 @@ notesvenv/
 db.sqlite3
 manage.py
 migrations/
+.env
