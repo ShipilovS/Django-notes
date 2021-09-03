@@ -10,7 +10,6 @@ from .forms import *
 from datetime import datetime
 from notes import settings
 
-
 def home_page(request):
     print(settings.BASE_DIR)
     print(settings.STATIC_URL)
