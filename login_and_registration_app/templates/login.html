@@ -1,11 +1,13 @@
 {% extends 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{% block title %}Вход{% endblock title %}</title>
 </head>
+
 <body>
-    
+
     {% block one %}
 
     {% endblock one %}
@@ -15,15 +17,18 @@
         <form method="POST" class="login-form">
             {% csrf_token %}
 
+
+            
+
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-3 mt-3">
-                    <input type="text" name="username" class="form-control" placeholder="Имя пользователя" />
+                    <input type="text" name="username" class="form-control" placeholder="Имя пользователя" id="validationTooltip03" required/>
                 </div>
             </div>
 
             <div class="row justify-content-center align-items-center">
                 <div class="col-md-3 mt-3">
-                    <input type="password" name="password" class="form-control" placeholder="Пароль" />
+                    <input type="password" name="password" class="form-control" placeholder="Пароль" id="validationTooltip03" required/>
                 </div>
             </div>
 
@@ -35,4 +40,5 @@
     {% endblock login %}
 
 </body>
+
 </html>
