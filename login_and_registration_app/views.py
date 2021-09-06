@@ -30,7 +30,7 @@ def registration_user(request):
                     #     [email],
                     #     fail_silently=False,
                     # )
-                    return redirect(reverse("profile"))
+                    return redirect("profile")
                 else:
                     pass
     return render(request, 'registration.html')
@@ -45,7 +45,7 @@ def login_user(request):
         user = authenticate(request, username=username, password=password)
         if user is not None and user.is_active: # user.is_active: если пользователь активен, наверное
             login(request, user)
-            return redirect(reverse("profile"))
+            return redirect("profile")
         else:
             pass
     return render(request, 'login.html')

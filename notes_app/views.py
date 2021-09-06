@@ -11,15 +11,13 @@ from datetime import datetime
 from notes import settings
 
 def home_page(request):
-    print(settings.BASE_DIR)
-    print(settings.STATIC_URL)
     return render(request, 'base.html')
 
 # Создание новой заметки
-@login_required(login_url='registration')
+@login_required(login_url='login')
 def new_note(request):
     context = {}
-
+    
     if request.method == 'POST':
         form = NewNoteForm(request.POST)
         if form.is_valid():
@@ -29,7 +27,7 @@ def new_note(request):
                 user_key=request.user,
                 # time_of_creation=datetime.now(),
             )
-            return redirect(reverse('profile'))
+            return redirect('profile')
     else:
         form = NewNoteForm()
     context = {
@@ -48,7 +46,7 @@ def edit_note(request, pk):
             edit_note.content = form.cleaned_data['content']
             edit_note.user_key = request.user
             edit_note.save()
-            return redirect(reverse('profile'))
+            return redirect('profile')
     else:
         form = NewNoteForm(instance=edit_note)
     context = {
@@ -62,17 +60,16 @@ def change_color(request, pk, color):
     color_edit = Note.objects.get(pk=pk)
     color_edit.bg_color = str(color)
     color_edit.save()
-    return redirect(reverse('profile'))
+    return redirect('profile')
 
 
 # Удаление заметки
 def delete_note(request, pk):
     delete_notes = Note.objects.get(pk=pk)
     delete_notes.delete()
-    set_user = User.objects.get(id=request.user.id).id
-    return redirect(reverse('profile'))
+    return redirect('profile')
 
-@login_required(login_url='registration')
+
 def profile(request):
     my_notes = Note.objects.filter(user_key=request.user.id).order_by('-id')
     context = {
