@@ -76,3 +76,4 @@ def profile(request):
         'my_notes' : my_notes,
     }
     return render(request, 'notes_app/profile.html', context=context)
+    
